@@ -2,6 +2,7 @@
 % Create latex table from matlab table
 % 
 % @author Ing. Ales Jandera
+% @email ales.jandera@tuke.sk
 %
 % MIT license
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -10,24 +11,38 @@ function varargout = table2latex(varargin)
     numArgs = nargin;
     cr = 13;
     tab = 9;
-    format = '%0.3f';
+    format = '%0.2f';
     N = length(varargin{1});
     M = numArgs;
+    align = 'l';
     
     % validation of input arguments
     if numArgs < 1
         error('Not enough input arguments. Please provide at least one.');
     end
     
-    % validation of length of input data
+    % parse format if inserted
+    for m = 1:numArgs
+       name = inputname(m);
+       % parse format parameters
+       if name == "format"
+           format = varargin{m};
+           M = M - 1;
+       elseif name == "align"
+           align = varargin{m};
+           M = M - 1;
+       end
+    end
+
+    % validation of N x M size
     if N ~= M
         error('Rows and columns are not same.');
     end
-    
+
     % begin the latext table
     str = ['\begin{table}', cr, tab, '\centering', cr, tab, tab,...
-        '\begin{tabular}{', repmat('l',1,M),'}', cr, tab, tab, tab];
-    
+        '\begin{tabular}{', repmat(align,1,M),'}', cr, tab, tab, tab];
+
     % Work through header elements
     for n = 1:N-1
        name = inputname(n);
