@@ -34,11 +34,6 @@ function varargout = table2latex(varargin)
        end
     end
 
-    % validation of N x M size
-    if N ~= M
-        error('Rows and columns are not same.');
-    end
-
     % begin the latext table
     str = ['\begin{table}', cr, tab, '\centering', cr, tab, tab,...
         '\begin{tabular}{', repmat(align,1,M),'}', cr, tab, tab, tab];
