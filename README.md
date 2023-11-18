@@ -43,3 +43,5 @@ Output:
 format = '%0.2f';\
 align = 'c';\
 latexTable = table2latex(Model, R2, RMSE, MSE, format, align)
+
+[![View table2latex on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/155182-table2latex)
